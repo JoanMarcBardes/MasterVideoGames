@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    cout << "*** Vector3 ***" << endl;
     Vector3 a = *new Vector3();
     Vector3 b = *new Vector3(1,0,1);
     Vector3 c = *new Vector3(b);
@@ -17,10 +18,12 @@ int main()
     cout << "d: " << d << endl;
 
     cout << "Normalize b: " << b.Normalize() << endl;
+    c.Normalized();
+    cout << "Normalized c: " << c << endl;
     cout << "distance_to b: " << b.distance_to(d) << endl;
     cout << "dot_product b: " << b.dot_product(d) << endl;
     cout << "cross_product b: " << b.cross_product(e) << endl;
-    cout << "cross_product b: " << b.angle_between(e) << endl;
+    cout << "angle_between b: " << b.angle_between(e) << endl;
 
     return 0;
 }
