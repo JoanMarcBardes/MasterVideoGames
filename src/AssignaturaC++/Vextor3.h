@@ -4,25 +4,28 @@ using namespace std;
 class Vector3
 {
 public:
-	Vector3();
-	Vector3(double x, double y, double z);
-	Vector3(Vector3& v);
-	~Vector3();
+	inline Vector3() : x(0), y(0), z(0) {}
+	inline Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+	inline Vector3(Vector3& v) { x = v.x; y = v.y; z = v.z; }
+	inline ~Vector3() {}
 
-	Vector3& operator=(const Vector3& v);
-	Vector3& operator+(const Vector3& v);
+	inline Vector3& operator=(const Vector3& v) { return *this;	}
+	inline Vector3& operator+(const Vector3& v)	{ return *new Vector3(x + v.x, y + v.y, z + v.z); }
+	inline Vector3& operator-(const Vector3& v) { return *new Vector3(x - v.x, y - v.y, z - v.z); }
+	inline Vector3& operator*(const Vector3& v) { return *new Vector3(x * v.x, y * v.y, z * v.z); }
+	inline Vector3& operator/(const Vector3& v) { return *new Vector3(x / v.x, y / v.y, z / v.z); }
 
-	//ostream& operator<<(ostream& os);
-	friend ostream& operator<<(ostream& os, const Vector3& v);
+	//inline ostream& operator<<(ostream& os) { return os << "(" << x << ", " << y << ", " << z << ")"; }
+	inline friend ostream& operator<<(ostream& os, const Vector3& v) { return os << "(" << v.x << ", " << v.y << ", " << v.z << ")"; }
 
 	Vector3& Normalize();
-	double distance_to(const Vector3& v);
-	double dot_product(const Vector3& v);
+	float distance_to(const Vector3& v);
+	float dot_product(const Vector3& v);
 	Vector3& cross_product(const Vector3& v);
-	double angle_between(const Vector3& v);
+	float angle_between(const Vector3& v);
 
 private:
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 };
