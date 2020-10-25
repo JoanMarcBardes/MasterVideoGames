@@ -26,6 +26,11 @@ public:
 	SDL_Rect foreground;
 	Animation flag;
 	Animation girl;
+	Animation greenGuy;
+	Animation blueGuy;
+	Animation brownGuy;
+	Animation pinkGuy;
+	Animation greyGuy;
 
 
 private:

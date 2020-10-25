@@ -48,6 +48,35 @@ ModuleSceneKen::ModuleSceneKen(bool start_enabled) : Module(start_enabled)
 	girl.frames.push_back({ 624, 80, 32, 56 });
 	girl.frames.push_back({ 624, 144, 32, 56 });
 	girl.speed = 0.05f;
+
+	// greenGuy animation
+	greenGuy.frames.push_back({ 664, 16, 32, 56 });
+	greenGuy.frames.push_back({ 664, 80, 32, 56 });
+	greenGuy.speed = 0.05f;
+
+	// blueGuy animation
+	blueGuy.frames.push_back({ 705, 16, 47, 56 });
+	blueGuy.frames.push_back({ 705, 80, 47, 56 });
+	blueGuy.frames.push_back({ 705, 144, 47, 56 });
+	blueGuy.speed = 0.05f;
+
+	// brownGuy animation
+	brownGuy.frames.push_back({ 760, 16, 40, 40 });
+	brownGuy.frames.push_back({ 760, 64, 40, 40 });
+	brownGuy.frames.push_back({ 760, 112, 40, 40 });
+	brownGuy.speed = 0.05f;
+
+	// pinkGuy animation
+	pinkGuy.frames.push_back({ 808, 24, 48, 32 });
+	pinkGuy.frames.push_back({ 808, 72, 48, 32 });
+	pinkGuy.frames.push_back({ 808, 120, 48, 32 });
+	pinkGuy.speed = 0.05f;
+
+	// greyGuy animation
+	greyGuy.frames.push_back({ 552, 8, 64, 64 });
+	greyGuy.frames.push_back({ 552, 72, 64, 64 });
+	greyGuy.frames.push_back({ 552, 136, 64, 64 });
+	greyGuy.speed = 0.05f;
 }
 
 ModuleSceneKen::~ModuleSceneKen()
@@ -96,7 +125,12 @@ update_status ModuleSceneKen::Update()
 	App->renderer->Blit(graphics, 0, -yOffset, &foreground, speed); // foreground
 
 	// TODO 6: Draw the girl. Make sure it follows the ship movement!
-	App->renderer->Blit(graphics, 192, 104 - yOffset, &(girl.GetCurrentFrame()), speed); // girl animation 200 128
+	App->renderer->Blit(graphics, 192, 104 - yOffset, &(girl.GetCurrentFrame()), speed); // girl animation
+	App->renderer->Blit(graphics, 224, 104 - yOffset, &(greenGuy.GetCurrentFrame()), speed); // greenGuy animation
+	App->renderer->Blit(graphics, 288, 96 - yOffset, &(blueGuy.GetCurrentFrame()), speed); // blueGuy animation
+	App->renderer->Blit(graphics, 87, 24 - yOffset, &(brownGuy.GetCurrentFrame()), speed); // brownGuy animation
+	App->renderer->Blit(graphics, 130, 24 - yOffset, &(pinkGuy.GetCurrentFrame()), speed); // pinkGuy animation
+	App->renderer->Blit(graphics, 128, 96 - yOffset, &(greyGuy.GetCurrentFrame()), speed); // greyGuy animation
 
 	App->renderer->Blit(graphics, 0, 170, &ground);
 
@@ -127,5 +161,5 @@ int ModuleSceneKen::Offset()
 		if (_increase == 0) _up = true;
 	}
 
-	return 0;// _increase / 20;
+	return _increase / 20;
 }

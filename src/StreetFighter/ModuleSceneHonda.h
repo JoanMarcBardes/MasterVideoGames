@@ -26,6 +26,8 @@ public:
 	SDL_Rect foreground;
 	SDL_Rect roof;
 	Animation water;
+	Animation picture;
+	Animation guy;
 
 };
 
