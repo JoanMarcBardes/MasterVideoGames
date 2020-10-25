@@ -30,6 +30,13 @@ ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 	backward.speed = 0.1f;
 
 	// TODO 8: setup the walk forward animation from ryu4.png
+	forward.frames.push_back({   9, 136, 52, 94 });
+	forward.frames.push_back({  78, 130, 61, 90 });
+	forward.frames.push_back({ 161, 130, 66, 93 });
+	forward.frames.push_back({ 258, 130, 65, 92 });
+	forward.frames.push_back({ 352, 130, 54, 94 });
+	forward.frames.push_back({ 432, 130, 50, 92 });
+	forward.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -63,6 +70,23 @@ update_status ModulePlayer::Update()
 	// TODO 9: Draw the player with its animation
 	// make sure to detect player movement and change its
 	// position while cycling the animation(check Animation.h)
+
+	const Uint8* keys = SDL_GetKeyboardState(NULL);
+
+	if (keys[SDL_SCANCODE_D])
+	{
+		++_xOffset;
+		App->renderer->Blit(graphics, 80 + _xOffset, 125, &(forward.GetCurrentFrame()), 1.0f); // forward animation
+	}
+	else if (keys[SDL_SCANCODE_A])
+	{
+		--_xOffset;
+		App->renderer->Blit(graphics, 80 + _xOffset, 125, &(backward.GetCurrentFrame()), 1.0f); // backward animation
+	}
+	else
+	{
+		App->renderer->Blit(graphics, 80 + _xOffset, 125, &(idle.GetCurrentFrame()), 1.0f); // idle animation
+	}
 
 	return UPDATE_CONTINUE;
 }
