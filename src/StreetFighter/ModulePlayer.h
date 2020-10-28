@@ -24,10 +24,22 @@ public:
 	Animation idle;
 	Animation backward;
 	Animation forward;
+	Animation jump;
+	Animation down;
 	iPoint position;
+
 
 private:
 	int _xOffset = 0;
+	Animation currentAnimation;
+
+	enum type_animation
+	{
+		NON_BLOCKING,
+		JUMP,
+		DOWN
+	};
+	type_animation typeAnimation = NON_BLOCKING;
 };
 
 #endif // __MODULEPLAYER_H__
